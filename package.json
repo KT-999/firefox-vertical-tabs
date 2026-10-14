@@ -1,0 +1,20 @@
+{
+  "name": "vertical-tabs-and-groups",
+  "version": "1.0.0",
+  "description": "Mozilla Firefox 側邊欄垂直分頁與原生分頁群組整合管理附加元件",
+  "main": "vertical-tabs-and-groups/src/main.js",
+  "scripts": {
+    "pack": "mkdir -p dist && cd vertical-tabs-and-groups && zip -r ../dist/vertical-tabs-and-groups-v1.0.0.zip . -x '*.DS_Store'",
+    "build": "npm run pack"
+  },
+  "keywords": [
+    "firefox",
+    "firefox-addon",
+    "webextension",
+    "vertical-tabs",
+    "tab-groups",
+    "tab-manager"
+  ],
+  "author": "",
+  "license": "MIT"
+}

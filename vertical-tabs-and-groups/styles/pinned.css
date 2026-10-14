@@ -1,0 +1,40 @@
+/* 固定分頁區 (Pinned tabs) */
+.pinned-section {
+  padding: 8px 10px 4px 10px;
+  flex-shrink: 0;
+}
+
+.pinned-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+  gap: 4px;
+}
+
+.pinned-tab-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.15s;
+}
+
+.pinned-tab-btn:hover {
+  background-color: var(--bg-hover);
+}
+
+.pinned-tab-btn.active {
+  background-color: var(--bg-active);
+  border-color: var(--accent-color);
+}
+
+.pinned-tab-btn img {
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}

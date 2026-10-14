@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "垂直分頁與分頁群組",
+    "description": "附加元件繁體中文名稱"
+  },
+  "extensionDescription": {
+    "message": "Firefox 側邊欄垂直分頁，原生沿用與管理分頁群組、分頁睡眠休眠省電、重複分頁清理、多帳號容器標籤整合與智慧排序。",
+    "description": "附加元件繁體中文描述"
+  }
+}

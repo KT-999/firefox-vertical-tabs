@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="#1a73e8"/>
+  <rect x="22" y="24" width="34" height="80" rx="8" fill="#ffffff" fill-opacity="0.95"/>
+  <!-- Tabs in vertical bar -->
+  <rect x="28" y="32" width="22" height="10" rx="4" fill="#1a73e8"/>
+  <rect x="28" y="48" width="22" height="10" rx="4" fill="#5f6368" fill-opacity="0.6"/>
+  <rect x="28" y="64" width="22" height="10" rx="4" fill="#5f6368" fill-opacity="0.6"/>
+  <!-- Content window -->
+  <rect x="64" y="24" width="42" height="80" rx="8" fill="#ffffff" fill-opacity="0.5"/>
+</svg>

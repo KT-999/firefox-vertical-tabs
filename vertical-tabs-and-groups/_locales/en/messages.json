@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Vertical Tabs & Tab Groups",
+    "description": "Add-on English name"
+  },
+  "extensionDescription": {
+    "message": "Vertical tabs sidebar for Firefox. Natively integrates Firefox Tab Groups, sleeping tabs, duplicate cleaner, container badges, and smart sorting.",
+    "description": "Add-on English description"
+  }
+}

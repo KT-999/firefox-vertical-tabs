@@ -1,0 +1,32 @@
+/* 右鍵選單 (Context Menu) 樣式 */
+.context-menu {
+  position: fixed;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-elevation);
+  padding: 4px 0;
+  z-index: 1000;
+  min-width: 180px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color 0.12s;
+}
+
+.menu-item:hover {
+  background-color: var(--bg-hover);
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 4px 0;
+}

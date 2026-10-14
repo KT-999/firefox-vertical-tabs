@@ -1,0 +1,10 @@
+/* 主樣式檔 - 模組化引入各功能樣式 */
+@import './variables.css';
+@import './base.css';
+@import './toolbar.css';
+@import './top-groups.css';
+@import './pinned.css';
+@import './tabs.css';
+@import './context-menu.css';
+@import './modal.css';
+@import './toast.css';

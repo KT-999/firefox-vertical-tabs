@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "1.0.0",
+  "default_locale": "zh_TW",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "tabs",
+    "tabGroups",
+    "storage",
+    "bookmarks",
+    "contextualIdentities",
+    "cookies",
+    "sessions"
+  ],
+  "sidebar_action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "default_title": "__MSG_extensionName__",
+    "default_panel": "sidebar.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "vertical-tabs-and-groups@extension.mozilla.org",
+      "strict_min_version": "128.0"
+    }
+  }
+}

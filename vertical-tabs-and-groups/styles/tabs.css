@@ -1,0 +1,295 @@
+/* 垂直分頁與分頁群組核心樣式 */
+.tabs-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px 0;
+}
+
+.tabs-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tabs-scroll-area::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 3px;
+}
+
+.tabs-scroll-area:hover::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+}
+
+.tabs-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 分頁群組 (Tab Group) */
+.tab-group-container {
+  margin: 4px 6px;
+  border-radius: var(--group-border-radius);
+  transition: margin 0.2s;
+}
+
+.tab-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  position: relative;
+}
+
+.tab-group-header:hover {
+  background-color: var(--bg-hover);
+}
+
+.group-left-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  max-width: 80%;
+}
+
+.group-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.group-title-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.group-count {
+  font-size: 11px;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.group-chevron {
+  display: flex;
+  align-items: center;
+  color: var(--icon-color);
+  transition: transform 0.2s ease;
+}
+
+.tab-group-container.collapsed .group-chevron {
+  transform: rotate(-90deg);
+}
+
+.group-tabs-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-left: 12px;
+  margin-top: 2px;
+  border-left: 2px solid transparent;
+  margin-left: 10px;
+}
+
+.tab-group-container.collapsed .group-tabs-list {
+  display: none;
+}
+
+/* 單一分頁項目 (Tab Item) */
+.tab-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  margin: 1px 6px;
+  padding: 0 8px;
+  border-radius: var(--tab-border-radius);
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.12s, box-shadow 0.12s, transform 0.1s;
+}
+
+.tab-item:hover {
+  background-color: var(--bg-hover);
+}
+
+.tab-item.active {
+  background-color: var(--bg-active);
+  color: var(--text-active);
+  font-weight: 500;
+}
+
+.tab-item.active .tab-title {
+  color: var(--text-active);
+}
+
+/* 多選高亮樣式 */
+.tab-item.selected {
+  background-color: var(--bg-active);
+  outline: 1.5px solid var(--accent-color);
+}
+
+/* 休眠分頁 (Discarded Sleeping Tabs) 樣式 */
+.tab-item.discarded .tab-favicon {
+  opacity: 0.6;
+  filter: grayscale(40%);
+}
+
+.tab-item.discarded .tab-title {
+  opacity: 0.75;
+}
+
+.tab-discarded-icon {
+  font-size: 10.5px;
+  margin-right: 4px;
+  line-height: 1;
+}
+
+/* Firefox 多帳號容器色彩指示條 */
+.tab-container-stripe {
+  width: 3.5px;
+  height: 18px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-right: -3px;
+}
+
+.tab-favicon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-favicon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.fallback-favicon {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.tab-title-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tab-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12.5px;
+  color: var(--text-primary);
+}
+
+.tab-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.audio-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+.tab-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.15s, background-color 0.15s, color 0.15s;
+}
+
+.tab-item:hover .tab-close-btn,
+.tab-item.active .tab-close-btn,
+.tab-item.selected .tab-close-btn {
+  opacity: 1;
+}
+
+.tab-close-btn:hover {
+  background-color: var(--close-btn-hover);
+  color: var(--text-primary);
+}
+
+/* 拖曳排序效果 */
+.tab-item.drag-over-top {
+  border-top: 2px solid var(--accent-color);
+}
+
+.tab-item.drag-over-bottom {
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.tab-group-header.drag-over {
+  background-color: var(--bg-hover);
+  outline: 2px dashed var(--accent-color);
+}
+
+/* 緊湊檢視模式 (Compact Density Mode) */
+.compact-mode .tab-item {
+  height: 27px;
+  margin: 1px 4px;
+  padding: 0 6px;
+  border-radius: 6px;
+}
+
+.compact-mode .tab-title {
+  font-size: 11.5px;
+}
+
+.compact-mode .tab-favicon,
+.compact-mode .tab-favicon img,
+.compact-mode .fallback-favicon {
+  width: 14px;
+  height: 14px;
+  font-size: 9px;
+}
+
+.compact-mode .tab-container-stripe {
+  height: 14px;
+}
+
+.compact-mode .tab-group-header {
+  padding: 3px 6px;
+}
+
+.compact-mode .group-left-pill {
+  padding: 2px 6px;
+  font-size: 11px;
+}

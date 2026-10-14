@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垂直分頁與分頁群組</title>
+  <!-- 模組化引入樣式 -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div class="sidebar-container" id="sidebarContainer">
+    <!-- 頂部工具列 -->
+    <header class="toolbar">
+      <div class="toolbar-left">
+        <span class="toolbar-title" data-i18n="tabs">分頁</span>
+        <span class="tab-count-badge" id="totalTabCount">0</span>
+      </div>
+      <div class="toolbar-actions">
+        <!-- 復原關閉分頁按鈕 -->
+        <button id="undoCloseBtn" class="icon-btn" data-i18n-title="undoCloseTooltip" title="復原關閉的分頁 (Ctrl+Shift+T)" aria-label="復原關閉的分頁">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+          </svg>
+        </button>
+        <!-- 關閉重複分頁按鈕 -->
+        <button id="closeDuplicatesBtn" class="icon-btn" data-i18n-title="closeDuplicatesTooltip" title="關閉重複分頁" aria-label="關閉重複分頁">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M15 1H4c-1.1 0-2 .9-2 2v13h2V3h11V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h10v14zm-5-3h2v-2h-2v2zm0-4h2V9h-2v4z"/>
+          </svg>
+        </button>
+        <!-- 搜尋分頁按鈕 -->
+        <button id="searchToggleBtn" class="icon-btn" data-i18n-title="searchTooltip" title="搜尋分頁 (Ctrl+F)" aria-label="搜尋分頁">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </button>
+        <!-- 收合/展開所有群組按鈕 -->
+        <button id="toggleAllGroupsBtn" class="icon-btn" data-i18n-title="toggleAllGroupsTooltip" title="收合/展開所有群組" aria-label="收合/展開所有群組">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+          </svg>
+        </button>
+        <!-- 排序與工具設定按鈕 -->
+        <button id="toolsBtn" class="icon-btn" data-i18n-title="toolsTooltip" title="工具與設定" aria-label="工具與設定">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/>
+          </svg>
+        </button>
+        <!-- 新增分頁按鈕 -->
+        <button id="newTabTopBtn" class="icon-btn highlight" data-i18n-title="newTabTooltip" title="新增分頁 (Ctrl+T)" aria-label="新增分頁">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 工具與排序浮動選單 -->
+    <div id="toolsMenu" class="tools-menu" style="display: none;"></div>
+
+    <!-- 頂部群組導覽列 (顯示當前群組與一鍵新增群組) -->
+    <section id="topGroupsBar" class="top-groups-container"></section>
+
+    <!-- 快速搜尋過濾欄 -->
+    <div class="search-bar-container" id="searchBarContainer" style="display: none;">
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" width="14" height="14">
+          <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="搜尋已開啟分頁..." autocomplete="off">
+        <button id="clearSearchBtn" class="clear-btn" data-i18n-title="clearSearchTooltip" title="清除搜尋">&times;</button>
+      </div>
+    </div>
+
+    <!-- 固定分頁區塊 (Pinned Tabs) -->
+    <section class="pinned-section" id="pinnedSection" style="display: none;">
+      <div class="pinned-grid" id="pinnedGrid"></div>
+      <div class="section-divider"></div>
+    </section>
+
+    <!-- 主要分頁列表 (群組與一般分頁) -->
+    <main class="tabs-scroll-area" id="tabsScrollArea">
+      <div id="tabsList" class="tabs-list"></div>
+      <div id="emptySearchResults" class="empty-state" style="display: none;">
+        <span data-i18n="noMatchingTabs">找不到相符的分頁</span>
+      </div>
+    </main>
+
+    <!-- 底部新增分頁按鈕 -->
+    <footer class="bottom-bar">
+      <button id="newTabBottomBtn" class="new-tab-wide-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16">
+          <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+        <span data-i18n="newTab">新增分頁</span>
+      </button>
+    </footer>
+  </div>
+
+  <!-- 自訂右鍵選單 (Context Menu) -->
+  <div id="contextMenu" class="context-menu" style="display: none;"></div>
+
+  <!-- 提示訊息條 (Toast) -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- 編輯/新增群組彈窗 (Group Edit Modal) -->
+  <div id="groupModal" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle" data-i18n="editGroupTitle">編輯分頁群組</span>
+        <button id="closeModalBtn" class="close-icon-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="groupNameInput" class="form-label" data-i18n="groupNameLabel">群組名稱</label>
+        <input type="text" id="groupNameInput" class="form-input" data-i18n-placeholder="groupNamePlaceholder" placeholder="輸入群組名稱...">
+
+        <label class="form-label" data-i18n="groupColorLabel">群組色彩</label>
+        <div class="color-picker-grid" id="colorPickerGrid"></div>
+      </div>
+      <div class="modal-footer">
+        <button id="cancelModalBtn" class="btn btn-secondary" data-i18n="cancel">取消</button>
+        <button id="saveModalBtn" class="btn btn-primary" data-i18n="save">儲存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模組化 ES Module 主入口 -->
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

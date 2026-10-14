@@ -1,0 +1,69 @@
+/* 基礎重設與全域版面配置 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.section-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin-top: 8px;
+}
+
+/* 底部列與寬版新增分頁按鈕 */
+.bottom-bar {
+  padding: 8px 10px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  flex-shrink: 0;
+}
+
+.new-tab-wide-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 7px 12px;
+  background-color: var(--bg-secondary);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.new-tab-wide-btn:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-color);
+}
+
+/* 空白搜尋狀態 */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 15px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}

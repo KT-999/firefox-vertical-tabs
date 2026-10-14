@@ -1,0 +1,24 @@
+/* 提示訊息 (Toast) 樣式 */
+.toast-container {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 3000;
+  white-space: nowrap;
+}
+
+.toast-container.visible {
+  opacity: 0.95;
+  transform: translateX(-50%) translateY(0);
+}
