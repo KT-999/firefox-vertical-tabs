@@ -177,7 +177,7 @@ export class ToolbarComponent {
     }
 
     // 渲染工具項目與開關狀態
-    this.toolsMenu.innerHTML = '';
+    this.toolsMenu.replaceChildren();
 
     const items = [
       {
@@ -219,7 +219,11 @@ export class ToolbarComponent {
       } else {
         const itemEl = document.createElement('div');
         itemEl.className = 'menu-item tools-item';
-        itemEl.innerHTML = `<span>${it.icon}</span> <span>${it.label}</span>`;
+        const iconSpan = document.createElement('span');
+        iconSpan.textContent = it.icon;
+        const labelSpan = document.createElement('span');
+        labelSpan.textContent = it.label;
+        itemEl.append(iconSpan, ' ', labelSpan);
         itemEl.addEventListener('click', (e) => {
           e.stopPropagation();
           this.toolsMenu.style.display = 'none';

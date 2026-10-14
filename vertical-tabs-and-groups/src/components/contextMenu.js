@@ -260,7 +260,7 @@ export class ContextMenuComponent {
    */
   render(x, y, items) {
     if (!this.menuEl) return;
-    this.menuEl.innerHTML = '';
+    this.menuEl.replaceChildren();
 
     items.forEach(item => {
       if (item.divider) {

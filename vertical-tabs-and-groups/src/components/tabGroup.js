@@ -4,6 +4,7 @@
 import { GROUP_COLORS, DEFAULT_GROUP_COLOR } from '../config/constants.js';
 import { TabService } from '../services/tabService.js';
 import { t } from '../i18n/index.js';
+import { createSvgIcon } from '../utils/dom.js';
 
 export class TabGroupComponent {
   /**
@@ -47,11 +48,8 @@ export class TabGroupComponent {
     // 右側箭頭指示
     const chevron = document.createElement('div');
     chevron.className = 'group-chevron';
-    chevron.innerHTML = `
-      <svg viewBox="0 0 24 24" width="16" height="16">
-        <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-      </svg>
-    `;
+    const chevronSvg = createSvgIcon('M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z', 16, 16);
+    chevron.appendChild(chevronSvg);
     header.appendChild(chevron);
 
     // 點擊收合/展開

@@ -127,7 +127,7 @@ class VerticalTabsApp {
 
   renderMainTabsList() {
     if (!this.tabsListEl) return;
-    this.tabsListEl.innerHTML = '';
+    this.tabsListEl.replaceChildren();
 
     const tabsToRender = this.store.filteredUnpinnedTabs;
 

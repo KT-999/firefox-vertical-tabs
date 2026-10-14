@@ -4,6 +4,7 @@
  */
 import { GROUP_COLORS, DEFAULT_GROUP_COLOR } from '../config/constants.js';
 import { t } from '../i18n/index.js';
+import { createSvgIcon } from '../utils/dom.js';
 
 export class TopGroupsBarComponent {
   constructor({ containerId = 'topGroupsBar', onCreateGroup, onSelectGroup }) {
@@ -14,7 +15,7 @@ export class TopGroupsBarComponent {
 
   render(tabGroupsMap, allTabs) {
     if (!this.container) return;
-    this.container.innerHTML = '';
+    this.container.replaceChildren();
 
     const groups = Array.from(tabGroupsMap.values());
 
@@ -26,12 +27,10 @@ export class TopGroupsBarComponent {
     const addGroupBtn = document.createElement('button');
     addGroupBtn.className = 'top-group-add-btn';
     addGroupBtn.title = t('createGroupBtn');
-    addGroupBtn.innerHTML = `
-      <svg viewBox="0 0 24 24" width="13" height="13">
-        <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-      </svg>
-      <span>${t('createGroupBtn')}</span>
-    `;
+    const addSvg = createSvgIcon('M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z', 13, 13);
+    const addSpan = document.createElement('span');
+    addSpan.textContent = t('createGroupBtn');
+    addGroupBtn.append(addSvg, addSpan);
     addGroupBtn.addEventListener('click', () => {
       if (this.onCreateGroup) this.onCreateGroup();
     });

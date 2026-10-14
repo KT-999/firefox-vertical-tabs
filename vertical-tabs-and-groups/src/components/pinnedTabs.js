@@ -14,7 +14,7 @@ export class PinnedTabsComponent {
 
   render(pinnedTabs) {
     if (!this.container || !this.grid) return;
-    this.grid.innerHTML = '';
+    this.grid.replaceChildren();
 
     if (pinnedTabs.length === 0) {
       this.container.style.display = 'none';

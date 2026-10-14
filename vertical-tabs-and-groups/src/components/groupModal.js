@@ -112,7 +112,7 @@ export class GroupModalComponent {
   }
 
   renderColorPicker() {
-    this.colorGrid.innerHTML = '';
+    this.colorGrid.replaceChildren();
 
     Object.keys(GROUP_COLORS).forEach(colorKey => {
       const circle = document.createElement('div');

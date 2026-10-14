@@ -4,7 +4,7 @@
   "description": "Mozilla Firefox 側邊欄垂直分頁與原生分頁群組整合管理附加元件",
   "main": "vertical-tabs-and-groups/src/main.js",
   "scripts": {
-    "pack": "mkdir -p dist && cd vertical-tabs-and-groups && zip -r ../dist/vertical-tabs-and-groups-v1.0.0.zip . -x '*.DS_Store'",
+    "pack": "python pack.py",
     "build": "npm run pack"
   },
   "keywords": [
